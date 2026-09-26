@@ -10,7 +10,7 @@ let seconds = 0;
 
 let start;
 
-let deck = [
+let CarList = [
 
 "black",
 "blue",
@@ -25,8 +25,10 @@ let deck = [
 
 ]
 
-let cardSet;
+let Deck;
 let board = []
+let rows = 4
+let cols = 5
 
 // buttons
 
@@ -63,22 +65,40 @@ window.onload = function(){
 // Gameplay
 
 function Shuffle(){
-    cardSet = deck.concat(deck)
-    console.log(cardSet)
+    Deck = CarList.concat(CarList)
+    console.log(Deck)
 
-    for(let i =0; i<cardSet.length; i++)
+    for(let i =0; i<Deck.length; i++)
     {
-        let j = Math.floor(Math.random() * cardSet.length)
+        let j = Math.floor(Math.random() * Deck.length)
 
-        let temp = deck[i]
-        deck[i]=deck[j]
-        deck[j]=temp
+        let temp = Deck[i]
+        Deck[i]=Deck[j]
+        Deck[j]=temp
 
+  
+    }
+    console.log(Deck)
+}
+
+function GameStart(){
+    
+  
+    for(let i = 0; i<rows; i++){ 
+        let row = []
+        for(let j = 0; j<cols; j++){
+            let cardImage = Deck.pop()
+            row.push(cardImage)
+
+            let card = document.createElement("img")
+            card.id = i.toString() + '-' + j.toString()
+            card.src = "/imgs/" + cardImage + ".png"
+            document.getElementById("board").append(card)
+
+        }
 
     }
 }
-
-
 
 
 
