@@ -2,6 +2,8 @@
 Petit jeu de mémoire avec des cartes pokémons
 > **Contexte :** ce projet est un petit exercice ayant pour but d'améliorer mon aisance avec javascript dans le but de manipuler le DOM d'une page web
 
+>**Statut :** Almost completed  
+
 ## Fonctionnalités
  
 - **Randomisation du placement des cartes** : à chaque partie, les cartes sont placées dans un agencement différent sur le plateau de jeu
