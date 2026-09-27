@@ -14,6 +14,8 @@ let showMatches = document.getElementById("matchFound")
 
 let ErrorsMade = document.getElementById("ErrorsMade")
 
+let victorySound = new Audio("victory sound.mp3")
+
 let timerOnHold = false;
 
 let start;
@@ -46,6 +48,19 @@ const reset = document.getElementById('reset')
 
 reset.addEventListener("click",()=>
     {
+
+        while(document.getElementById("board").firstChild){
+    document.getElementById("board").removeChild(document.getElementById("board").firstChild)
+    }
+        Deck = null;
+        board = []
+        matches = 0;
+        cardSelected = null;
+        cardSelected2 = null;
+        ErrorsMade.innerText = 0
+        showMatches.innerText = 0 + "/10"
+        matches = 0;
+        errors = 0;
       timer.innerText = 0  
       seconds = 0;
       clearInterval(start)
@@ -78,6 +93,7 @@ pause.addEventListener("click",()=>
 window.onload = gameInit()
 
 function gameInit(){
+
     start = setInterval(() => {
     seconds++
     timer.innerText = seconds
@@ -106,9 +122,7 @@ function Shuffle(){
 }
 
 function GameStart(){
-    while(document.getElementById("board").firstChild){
-        document.getElementById("board").removeChild(document.getElementById("board").firstChild)
-    }
+
   
     for(let i = 0; i<rows; i++){ 
         let row = []
@@ -177,9 +191,16 @@ function checkMatch(){
         cardSelected2.removeEventListener("click", select)
         cardSelected = null
         cardSelected2 = null
+        checkVictory()
+  
     }
 }
 
 
-
-
+function checkVictory(){      
+    if (matches == 10){
+        clearInterval(start)
+        victorySound.play()
+        alert("You won the game in " + seconds + " seconds with " + errors + " errors!")
+    }   
+}
